@@ -36,6 +36,7 @@
 
     prepare.addEventListener("click", () => {
         prepareF()
+        alert("request_key를 가져옴")
     })
 
 
@@ -69,18 +70,17 @@
     const getWallet = document.getElementById("getWallet")
     getWallet.addEventListener("click", () => {
         getWalletF()
+        alert("지갑주소를 가져옴")
     })
 
     function getWalletF() {
-
-        console.log(requestKey.innerText)
         $.ajax({
             url: `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${requestKey.innerText}`,
             type: "GET",
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                console.log(data)
+                alert(data.result.klaytn_address)
             },
             error: function (error) {
                 console.log(error)
@@ -117,18 +117,19 @@
         appStoreURL = (type === "android") ? 'market://details?id=' + pkgName : 'itms-apps://itunes.apple.com/app/id362057947';
 
     btnEl.addEventListener('click', function () {
-        daumtools.web2app({
-            urlScheme: urlScheme,
-            intentURI: intentURI,
-            storeURL: appStoreURL,
-            appName: '카카오톡',
-            onUnsupportedEnvironment: function () {
-                console.log('go to web page'); //example
-            },
-            willInvokeApp: function () {
-                console.log('send click log'); //example
-            },
-        });
+        // daumtools.web2app({
+        //     urlScheme: urlScheme,
+        //     intentURI: intentURI,
+        //     storeURL: appStoreURL,
+        //     appName: '카카오톡',
+        //     onUnsupportedEnvironment: function () {
+        //         console.log('go to web page'); //example
+        //     },
+        //     willInvokeApp: function () {
+        //         console.log('send click log'); //example
+        //     },
+        // });
+        window.open(`kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${requestKey.innerText}`)
     });
 
 
