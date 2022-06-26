@@ -11,13 +11,10 @@
 </head>
 <body>
 <div class="container">
-    <button id="prepare">Prepare</button>
-    <button id="getWallet">Get Wallet</button>
-    <div id="requestKey"></div>
-    <div>
-        <button id="web2appTestBtn">카카오톡 공유하기 버튼</button>
-        <br/><br/><br/><br/>
-    </div>
+    <button id="prepare">Step.1 Prepare</button>
+    <button id="web2appTestBtn">Step2. Render Kakaotalk</button>
+    <button id="getWallet">Step.3 Get Wallet</button>
+    <div hidden id="requestKey"></div>
 </div>
 
 <script crossorigin="anonymous"
@@ -30,7 +27,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/web2app.js"></script>
+<script src="/static/web2app.js" type="text/javascript"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <script>
     const prepare = document.getElementById("prepare")
@@ -109,13 +107,13 @@
 
     const type = checkMobile()
 
-    var ua = navigator.userAgent;
+    // var ua = navigator.userAgent;
 
     var btnEl = document.getElementById('web2appTestBtn'),
         scheme = 'kakaolink',
         pkgName = 'com.kakao.talk',
-        urlScheme = 'kakaolink://send?appkey=d44932a7e94186c156d0ceab1e6a1a57&appver=1.0&apiver=3.0&linkver=3.5&objs=%5B%7B"objtype"%3A"label"%2C"text"%3A"%5B%EB%AF%B8%EB%94%94%EC%96%B4%EB%8B%A4%EC%9D%8C%5D%5Cr%5Cn%EA%B0%9C%EC%99%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%84%A0%ED%98%B8%EB%8F%84%EC%97%90%20%EB%94%B0%EB%9D%BC%20%EC%82%AC%EB%9E%8C%EC%9D%98%20%EC%84%B1%EA%B2%A9%EB%8F%84%20%EC%95%8C%20%EC%88%98%20%EC%9E%88%EB%8B%A4%3F"%7D%2C%7B"objtype"%3A"link"%2C"text"%3A"http%3A%2F%2Fm.media.daum.net%2Fm%2Fmedia%2Frealtime%2Fnewsview%2F20140528130607055%3Ffoo%3Dbar%26hello%3Dworld"%2C"action"%3A%7B"type"%3A"web"%2C"url"%3A"http%3A%2F%2Fm.media.daum.net%2Fm%2Fmedia%2Frealtime%2Fnewsview%2F20140528130607055%3Ffoo%3Dbar%26hello%3Dworld"%7D%7D%5D',
-        intentURI = 'intent://send?appkey=d44932a7e94186c156d0ceab1e6a1a57&appver=1.0&apiver=3.0&linkver=3.5&objs=%5B%7B"objtype"%3A"label"%2C"text"%3A"%5B%EB%AF%B8%EB%94%94%EC%96%B4%EB%8B%A4%EC%9D%8C%5D%5Cr%5Cn%EA%B0%9C%EC%99%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%84%A0%ED%98%B8%EB%8F%84%EC%97%90%20%EB%94%B0%EB%9D%BC%20%EC%82%AC%EB%9E%8C%EC%9D%98%20%EC%84%B1%EA%B2%A9%EB%8F%84%20%EC%95%8C%20%EC%88%98%20%EC%9E%88%EB%8B%A4%3F"%7D%2C%7B"objtype"%3A"link"%2C"text"%3A"http%3A%2F%2Fm.media.daum.net%2Fm%2Fmedia%2Frealtime%2Fnewsview%2F20140528130607055%3Ffoo%3Dbar%26hello%3Dworld"%2C"action"%3A%7B"type"%3A"web"%2C"url"%3A"http%3A%2F%2Fm.media.daum.net%2Fm%2Fmedia%2Frealtime%2Fnewsview%2F20140528130607055%3Ffoo%3Dbar%26hello%3Dworld"%7D%7D%5D#Intent;scheme=' + scheme + ';package=' + pkgName + ';end',
+        urlScheme = `kakaolink://send?appkey=${requestKey.innerText}`,
+        intentURI = `intent://send?appkey=${requestKey.innerText}`,
         appStoreURL = (type === "android") ? 'market://details?id=' + pkgName : 'itms-apps://itunes.apple.com/app/id362057947';
 
     btnEl.addEventListener('click', function () {
@@ -129,10 +127,10 @@
             },
             willInvokeApp: function () {
                 console.log('send click log'); //example
-            }
+            },
         });
-
     });
+
 
 </script>
 </body>
