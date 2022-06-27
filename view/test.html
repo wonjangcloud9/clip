@@ -11,10 +11,12 @@
 </head>
 <body>
 <div class="container">
-    <button id="prepare">Step.1 Prepare</button>
-    <button id="web2appTestBtn">Step2. Render Kakaotalk</button>
-    <button id="getWallet">Step.3 Get Wallet</button>
+    <button id="prepare">Step.1 Prepare & Render KakaoTalk</button>
+    <button hidden id="web2appTestBtn">Step2. Render Kakaotalk</button>
+    <button id="getWallet">Step.2 Get Wallet</button>
     <div hidden id="requestKey"></div>
+    <div>Wallet Address</div>
+    <div id="walletAddr"></div>
 </div>
 
 <script crossorigin="anonymous"
@@ -34,9 +36,12 @@
     const prepare = document.getElementById("prepare")
     const requestKey = document.getElementById("requestKey")
 
-    prepare.addEventListener("click", () => {
-        prepareF()
-        alert("request_key를 가져옴")
+    prepare.addEventListener("click", async () => {
+        await prepareF()
+        setTimeout(()=>{
+            openKakaotalk()
+        },1000)
+        alert("완료")
     })
 
 
@@ -66,7 +71,7 @@
             }
         });
     }
-
+    const walletAddr = document.getElementById("walletAddr")
     const getWallet = document.getElementById("getWallet")
     getWallet.addEventListener("click", () => {
         getWalletF()
@@ -80,7 +85,7 @@
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                alert(data.result.klaytn_address)
+                walletAddr.innerText = data.result.klaytn_address
             },
             error: function (error) {
                 console.log(error)
@@ -117,21 +122,11 @@
         appStoreURL = (type === "android") ? 'market://details?id=' + pkgName : 'itms-apps://itunes.apple.com/app/id362057947';
 
     btnEl.addEventListener('click', function () {
-        // daumtools.web2app({
-        //     urlScheme: urlScheme,
-        //     intentURI: intentURI,
-        //     storeURL: appStoreURL,
-        //     appName: '카카오톡',
-        //     onUnsupportedEnvironment: function () {
-        //         console.log('go to web page'); //example
-        //     },
-        //     willInvokeApp: function () {
-        //         console.log('send click log'); //example
-        //     },
-        // });
-        window.open(`kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${requestKey.innerText}`)
     });
 
+    function openKakaotalk(){
+        window.open(`kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${requestKey.innerText}`)
+    }
 
 </script>
 </body>
