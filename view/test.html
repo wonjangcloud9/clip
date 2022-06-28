@@ -12,8 +12,8 @@
 <body>
 <div class="container">
     <img src="https://s3.ap-northeast-2.amazonaws.com/s3.kakao-klip-login/images/a.jpeg" alt="..." />
-    <button id="prepare">Step.1 Prepare</button>
-    <button id="web2appTestBtn">Step2. Render Kakaotalk</button>
+    <button id="prepare">Step.1 Prepare & Render Kakaotalk</button>
+<!--    <button id="web2appTestBtn">Step2. Render Kakaotalk</button>-->
     <button id="getWallet">Step.2 Get Wallet</button>
     <div hidden id="requestKey"></div>
     <div>Wallet Address</div>
@@ -39,9 +39,9 @@
 
     prepare.addEventListener("click", async () => {
         await prepareF()
-        // setTimeout(()=>{
-        //     openKakaotalk()
-        // },1000)
+        setTimeout(()=>{
+            openKakaotalk()
+        },1000)
         // alert("완료")
     })
 
