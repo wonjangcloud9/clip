@@ -184,7 +184,7 @@
       const chat_id = window.location.search.split("=")[1];
 
       function getWalletF() {
-        $("#exampleModalLong").modal("hide");
+        exampleModalLongTitle.hidden = false;
         prepareBtn.hidden = true;
         clear.hidden = false;
         $.ajax({
