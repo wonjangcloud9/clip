@@ -1,215 +1,279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-          name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
     <title>Document</title>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-
-</head>
-<body>
-<div class="d-flex justify-content-center align-items-center"
-     style="background-image: url('https://s3.ap-northeast-2.amazonaws.com/s3.kakao-klip-login/images/a.jpeg'); height: 100vh; background-size: cover; background-position: center;">
-    <div hidden>
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div
+      class="d-flex justify-content-center align-items-center"
+      style="
+        background-image: url('https://s3.ap-northeast-2.amazonaws.com/s3.kakao-klip-login/images/a.jpeg');
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div hidden>
         <button id="prepare">Step.1 Prepare</button>
         <button id="web2appTestBtn">Step2. Render Kakaotalk</button>
         <button id="getWallet">Step.3 Get Wallet Address</button>
         <div hidden id="requestKey"></div>
-        <div>
-            <div>Wallet Address</div>
-            <div id="walletAddr"></div>
-        </div>
+        <div></div>
         <button id="qrBtn">create QR Code</button>
         <div id="qrcode"></div>
-    </div>
-    <div>
-        <button class="btn btn-dark" data-target="#exampleModalLong" data-toggle="modal" id="prepareBtn" type="button">
-            KaKao 지갑 연결하기
+      </div>
+      <div>
+        <button
+          class="btn btn-dark"
+          data-target="#exampleModalLong"
+          data-toggle="modal"
+          id="prepareBtn"
+          type="button"
+        >
+          KaKao 지갑 연결하기
         </button>
+        <div id="walletAddr"></div>
         <h2 id="clear" hidden>회원가입이 완료되었습니다.</h2>
+      </div>
     </div>
-</div>
-<div aria-hidden="true" aria-labelledby="exampleModalLongTitle" class="modal fade" id="exampleModalLong" role="dialog"
-     tabindex="-1">
-    <div class="modal-dialog" role="document">
+    <div
+      aria-hidden="true"
+      aria-labelledby="exampleModalLongTitle"
+      class="modal fade"
+      id="exampleModalLong"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">지갑 연결하기</h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              지갑 연결하기
+            </h5>
+            <button
+              aria-label="Close"
+              class="close"
+              data-dismiss="modal"
+              type="button"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div
+              class="mb-2 p-2 text-center"
+              id="klipLogin"
+              style="
+                border: 1px solid black;
+                border-radius: 0.4rem;
+                cursor: pointer;
+              "
+            >
+              Step1. Klip with Kakao
             </div>
-            <div class="modal-body">
-                <div class="mb-2 p-2 text-center" id="klipLogin"
-                     style="border: 1px solid black; border-radius: 0.4rem; cursor:pointer;">Step1. Klip with Kakao
-                </div>
-<!--                <div class="mb-2 p-2 text-center"-->
-<!--                     style="border: 1px solid black; border-radius: 0.4rem; cursor:pointer;">D'cent-->
-<!--                </div>-->
-                <div class="mb-2 p-2 text-center" id="getWalletAddress"
-                     style="border: 1px solid black; border-radius: 0.4rem; cursor:pointer;">Step2. 지갑주소 얻기
-                </div>
+            <!--                <div class="mb-2 p-2 text-center"-->
+            <!--                     style="border: 1px solid black; border-radius: 0.4rem; cursor:pointer;">D'cent-->
+            <!--                </div>-->
+            <div
+              class="mb-2 p-2 text-center"
+              id="getWalletAddress"
+              style="
+                border: 1px solid black;
+                border-radius: 0.4rem;
+                cursor: pointer;
+              "
+            >
+              Step2. 지갑주소 얻기
             </div>
-            <div class="text-center mb-4">
-                <div class="" style=" cursor:pointer;">모바일에서 Kaikas 지갑을 지원하지 않습니다.</div>
+          </div>
+          <div class="text-center mb-4">
+            <div class="" style="cursor: pointer">
+              모바일에서 Kaikas 지갑을 지원하지 않습니다.
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<script crossorigin="anonymous"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/static/web2app.js" type="text/javascript"></script>
-<script src="/static/qrcode.js" type="text/javascript"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/web2app.js" type="text/javascript"></script>
+    <script src="/static/qrcode.js" type="text/javascript"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script>
-    const getWalletAddress = document.getElementById("getWalletAddress")
-    const prepare = document.getElementById("prepare")
-    const requestKey = document.getElementById("requestKey")
-    const prepareBtn = document.getElementById("prepareBtn")
-    const klipLogin = document.getElementById("klipLogin")
-    const clear = document.getElementById("clear")
-    getWalletAddress.addEventListener("click", ()=>{
-        getWalletF()
-    })
-    prepareBtn.addEventListener("click", async () => {
-        await prepareF()
+    <script>
+      const getWalletAddress = document.getElementById("getWalletAddress");
+      const prepare = document.getElementById("prepare");
+      const requestKey = document.getElementById("requestKey");
+      const prepareBtn = document.getElementById("prepareBtn");
+      const klipLogin = document.getElementById("klipLogin");
+      const clear = document.getElementById("clear");
+      getWalletAddress.addEventListener("click", () => {
+        getWalletF();
+      });
+      prepareBtn.addEventListener("click", async () => {
+        await prepareF();
         // setTimeout(()=>{
         //     openKakaotalk()
         // },1000)
         // alert("완료")
-    })
+      });
 
-
-    function prepareF() {
+      function prepareF() {
         const formData = {
-            bapp: {
-                name: "test",
-                callback: {
-                    success: "test://",
-                    fail: "test://",
-                },
+          bapp: {
+            name: "test",
+            callback: {
+              success: "test://",
+              fail: "test://",
             },
-            type: "auth",
-        }
+          },
+          type: "auth",
+        };
         $.ajax({
-            url: "https://a2a-api.klipwallet.com/v2/a2a/prepare",
-            type: "POST",
-            data: JSON.stringify(formData),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data) {
-                requestKey.innerText = data.request_key
-                console.log(data)
-            },
-            error: function (error) {
-                console.log(error)
-            }
+          url: "https://a2a-api.klipwallet.com/v2/a2a/prepare",
+          type: "POST",
+          data: JSON.stringify(formData),
+          dataType: "json",
+          contentType: "application/json",
+          success: function (data) {
+            requestKey.innerText = data.request_key;
+            console.log(data);
+          },
+          error: function (error) {
+            console.log(error);
+          },
         });
-    }
+      }
 
-    const walletAddr = document.getElementById("walletAddr")
-    const getWallet = document.getElementById("getWallet")
-    getWallet.addEventListener("click", () => {
-        getWalletF()
+      const walletAddr = document.getElementById("walletAddr");
+      const getWallet = document.getElementById("getWallet");
+      getWallet.addEventListener("click", () => {
+        getWalletF();
         // alert("지갑주소를 가져옴")
-    })
-    klipLogin.addEventListener("click", () => {
-        openKakaotalk()
-        $('#exampleModalLong').modal('hide')
+      });
+      klipLogin.addEventListener("click", () => {
+        openKakaotalk();
+        $("#exampleModalLong").modal("hide");
         // alert("지갑주소를 가져옴")
-    })
+      });
 
-    const chat_id = window.location.search.split("=")[1]
+      const chat_id = window.location.search.split("=")[1];
 
-    function getWalletF() {
+      function getWalletF() {
         $.ajax({
-            url: `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${requestKey.innerText}`,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data) {
-                walletAddr.innerText = data.result.klaytn_address
-            },
-            error: function (error) {
-                console.log(error)
-                alert("오류가 발생하였습니다.")
-            }
+          url: `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${requestKey.innerText}`,
+          type: "GET",
+          dataType: "json",
+          contentType: "application/json",
+          success: function (data) {
+            walletAddr.innerText = data.result.klaytn_address;
+            alert("지갑주소 얻기 완료");
+            const wallet_data = {
+              chat_id: chat_id,
+              wallet_address: walletAddr.innerText.trim(),
+            };
+            $.ajax({
+              url: `https://xsgwilya3b.execute-api.ap-northeast-2.amazonaws.com/dev/user/`,
+              type: "POST",
+              data: JSON.stringify(wallet_data),
+              dataType: "json",
+              contentType: "application/json",
+              success: function (data) {
+                console.log(data);
+                alert("회원가입 완료");
+              },
+              error: function (error) {
+                console.log(error);
+              },
+            });
+          },
+          error: function (error) {
+            console.log(error);
+            alert("오류가 발생하였습니다.");
+          },
         });
-        const wallet_data = {
-            chat_id: chat_id,
-            wallet_address: walletAddr.innerText.trim()
-        }
-        $.ajax({
-            url: `https://xsgwilya3b.execute-api.ap-northeast-2.amazonaws.com/dev/user/`,
-            type: "POST",
-            data: JSON.stringify(wallet_data),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data) {
-                console.log(data)
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        });
-        $('#exampleModalLong').modal('hide')
-        prepareBtn.hidden = true
-        clear.hidden = false
-    }
 
-    function checkMobile() {
+        $("#exampleModalLong").modal("hide");
+        prepareBtn.hidden = true;
+        clear.hidden = false;
+      }
 
+      function checkMobile() {
         var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
 
-        if (varUA.indexOf('android') > -1) {
-            return "android";
-        } else if (varUA.indexOf("iphone") > -1 || varUA.indexOf("ipad") > -1 || varUA.indexOf("ipod") > -1) {
-            //IOS
-            return "ios";
+        if (varUA.indexOf("android") > -1) {
+          return "android";
+        } else if (
+          varUA.indexOf("iphone") > -1 ||
+          varUA.indexOf("ipad") > -1 ||
+          varUA.indexOf("ipod") > -1
+        ) {
+          //IOS
+          return "ios";
         } else {
-            //아이폰, 안드로이드 외
-            return "other";
+          //아이폰, 안드로이드 외
+          return "other";
         }
+      }
 
-    }
+      const type = checkMobile();
 
-    const type = checkMobile()
+      // var ua = navigator.userAgent;
 
-    // var ua = navigator.userAgent;
-
-    var btnEl = document.getElementById('web2appTestBtn'),
-        scheme = 'kakaolink',
-        pkgName = 'com.kakao.talk',
+      var btnEl = document.getElementById("web2appTestBtn"),
+        scheme = "kakaolink",
+        pkgName = "com.kakao.talk",
         urlScheme = `kakaolink://send?appkey=${requestKey.innerText}`,
         intentURI = `intent://send?appkey=${requestKey.innerText}`,
-        appStoreURL = (type === "android") ? 'market://details?id=' + pkgName : 'itms-apps://itunes.apple.com/app/id362057947';
+        appStoreURL =
+          type === "android"
+            ? "market://details?id=" + pkgName
+            : "itms-apps://itunes.apple.com/app/id362057947";
 
-    btnEl.addEventListener('click', function () {
-        openKakaotalk()
-    });
+      btnEl.addEventListener("click", function () {
+        openKakaotalk();
+      });
 
-    function openKakaotalk() {
-        window.open(`kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${requestKey.innerText}`)
-    }
+      function openKakaotalk() {
+        window.open(
+          `kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${requestKey.innerText}`
+        );
+      }
 
-    const qrBtn = document.getElementById("qrBtn")
-    qrBtn.addEventListener("click", () => {
-        new QRCode(document.getElementById("qrcode"), `https://klipwallet.com/?target=/a2a?request_key=${requestKey}#Intent;scheme=kakaotalk;package=com.kakao.talk;end`);
-    })
-
-</script>
-</body>
+      const qrBtn = document.getElementById("qrBtn");
+      qrBtn.addEventListener("click", () => {
+        new QRCode(
+          document.getElementById("qrcode"),
+          `https://klipwallet.com/?target=/a2a?request_key=${requestKey}#Intent;scheme=kakaotalk;package=com.kakao.talk;end`
+        );
+      });
+    </script>
+  </body>
 </html>
