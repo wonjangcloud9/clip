@@ -16,4 +16,6 @@ def login(request: Request):
 
 @app.get('/login', response_class=HTMLResponse)
 def login(request: Request):
-    return templates.TemplateResponse("test.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
+
+    
