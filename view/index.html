@@ -162,7 +162,6 @@
           contentType: "application/json",
           success: function (data) {
             requestKey.innerText = data.request_key;
-            console.log(data);
           },
           error: function (error) {
             console.log(error);
@@ -177,14 +176,17 @@
         // alert("지갑주소를 가져옴")
       });
       klipLogin.addEventListener("click", () => {
+        klipLogin.hidden = true;
         openKakaotalk();
-        $("#exampleModalLong").modal("hide");
         // alert("지갑주소를 가져옴")
       });
 
       const chat_id = window.location.search.split("=")[1];
 
       function getWalletF() {
+        $("#exampleModalLong").modal("hide");
+        prepareBtn.hidden = true;
+        clear.hidden = false;
         $.ajax({
           url: `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${requestKey.innerText}`,
           type: "GET",
@@ -206,9 +208,6 @@
               success: function (data) {
                 console.log(data);
                 alert("회원가입 완료");
-                $("#exampleModalLong").modal("hide");
-                prepareBtn.hidden = true;
-                clear.hidden = false;
               },
               error: function (error) {
                 console.log(error);
